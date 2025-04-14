@@ -12,9 +12,8 @@ homepage = "https://github.com/elkowar/eww"
 dbusmenu-gtk3 = "0.1.0"
 quick-xml = { version = "0.37.1", features = ["serialize"] }
 serde = "1.0.215"
-
-gtk.workspace = true
-log.workspace = true
-thiserror.workspace = true
-tokio = { workspace = true, features = ["full"] }
-zbus = { workspace = true, default-features = false, features = ["tokio"] }
+gtk = "0.18"
+log = "0.4"
+thiserror = "1.0"
+tokio = { version = "1.39.2", features = ["full"] }
+zbus = { version = "3.7.0", default-features = false, features = ["tokio"] }
