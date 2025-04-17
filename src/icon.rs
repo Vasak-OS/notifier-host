@@ -1,5 +1,3 @@
-use crate::*;
-
 use gtk::{self, prelude::*};
 
 #[derive(thiserror::Error, Debug)]

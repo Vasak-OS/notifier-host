@@ -44,7 +44,7 @@ pub use item::*;
 mod watcher;
 pub use watcher::*;
 
-pub(crate) mod names {
+pub mod names {
     pub const WATCHER_BUS: &str = "org.kde.StatusNotifierWatcher";
     pub const WATCHER_OBJECT: &str = "/StatusNotifierWatcher";
 

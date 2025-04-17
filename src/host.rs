@@ -1,5 +1,3 @@
-use crate::*;
-
 use zbus::export::ordered_stream::{self, OrderedStreamExt};
 
 /// Trait for system tray implementations, to be notified of changes to what items are in the tray.

@@ -1,5 +1,3 @@
-use crate::*;
-
 use gtk::{self, prelude::*};
 use serde::Deserialize;
 use zbus::fdo::IntrospectableProxy;
