@@ -1,4 +1,4 @@
-use gtk::{self, prelude::*};
+use crate::*;
 use serde::Deserialize;
 use zbus::fdo::IntrospectableProxy;
 
@@ -42,7 +42,7 @@ impl std::str::FromStr for Status {
 pub struct Item {
     /// The StatusNotifierItem that is wrapped by this instance.
     pub sni: proxy::StatusNotifierItemProxy<'static>,
-    gtk_menu: Option<dbusmenu_gtk3::Menu>,
+    //gtk_menu: Option<>,
 }
 
 impl Item {
@@ -74,7 +74,7 @@ impl Item {
 
         let sni = proxy::StatusNotifierItemProxy::builder(con).destination(addr)?.path(path)?.build().await?;
 
-        Ok(Self { sni, gtk_menu: None })
+        Ok(Self { sni, /*gtk_menu: None*/ })
     }
 
     /// Get the current status of the item.
@@ -84,30 +84,6 @@ impl Item {
             Ok(s) => Ok(s),
             Err(_) => Err(zbus::Error::Failure(format!("Invalid status {:?}", status))),
         }
-    }
-
-    pub async fn set_menu(&mut self, widget: &gtk::EventBox) -> zbus::Result<()> {
-        let menu = dbusmenu_gtk3::Menu::new(self.sni.destination(), &self.sni.menu().await?);
-        menu.set_attach_widget(Some(widget));
-        self.gtk_menu = Some(menu);
-        Ok(())
-    }
-
-    pub async fn popup_menu(&self, event: &gtk::gdk::EventButton, x: i32, y: i32) -> zbus::Result<()> {
-        if let Some(menu) = &self.gtk_menu {
-            menu.popup_at_pointer(event.downcast_ref::<gtk::gdk::Event>());
-            Ok(())
-        } else {
-            self.sni.context_menu(x, y).await
-        }
-    }
-
-    /// Get the current icon.
-    pub async fn icon(&self, size: i32, scale: i32) -> Option<gtk::gdk_pixbuf::Pixbuf> {
-        // TODO explain what size and scale mean here
-
-        // see icon.rs
-        load_icon_from_sni(&self.sni, size, scale).await
     }
 }
 

@@ -1,7 +1,8 @@
+use crate::*;
 use zbus::export::ordered_stream::{self, OrderedStreamExt};
 
 /// Trait for system tray implementations, to be notified of changes to what items are in the tray.
-pub trait Host {
+pub trait Host where Self: Send {
     /// Called when an item is added to the tray. This is also called for all existing items when
     /// starting [`run_host`].
     fn add_item(&mut self, id: &str, item: Item);

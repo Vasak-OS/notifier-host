@@ -35,9 +35,6 @@ pub mod proxy;
 mod host;
 pub use host::*;
 
-mod icon;
-pub use icon::*;
-
 mod item;
 pub use item::*;
 

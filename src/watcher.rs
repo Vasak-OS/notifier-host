@@ -1,4 +1,4 @@
-use names;
+use crate::names;
 use zbus::{dbus_interface, export::ordered_stream::OrderedStreamExt, Interface};
 
 /// An instance of [`org.kde.StatusNotifierWatcher`]. It only tracks what tray items and trays
